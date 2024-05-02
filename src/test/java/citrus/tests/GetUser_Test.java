@@ -8,6 +8,7 @@ import com.consol.citrus.context.TestContext;
 import com.consol.citrus.message.MessageType;
 import com.consol.citrus.message.builder.ObjectMappingPayloadBuilder;
 import com.consol.citrus.testng.spring.TestNGCitrusSpringSupport;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.HttpStatus;
 import org.testng.annotations.Test;
 
@@ -18,13 +19,10 @@ public class GetUser_Test extends TestNGCitrusSpringSupport {
 
     private TestContext context;
 
-    @Test(description = "Получение информации о пользователе")
+    @Test(description = "Получение информации о пользователе через hard-code")
     @CitrusTest
-    public void getActions() {
+    public void getUser2HardCodeTest() {
         this.context = citrus.getCitrusContext().createTestContext();
-
-        context.setVariable("value", "superValue");
-        $(echo("Property \"value\" = " + context.getVariable("value")));
 
         $(echo("We have userId = " + context.getVariable("userId")));
         $(echo("Property \"userId\" = " + "${userId}"));
@@ -42,7 +40,6 @@ public class GetUser_Test extends TestNGCitrusSpringSupport {
                 .response(HttpStatus.OK)
                 .message()
                 .type(MessageType.JSON)
-                /*.body(new ObjectMappingPayloadBuilder(getJsonData(), "objectMapper"))*/
                 .body("{\n" +
                         "    \"data\": {\n" +
                         "        \"id\": 2,\n" +
@@ -56,6 +53,56 @@ public class GetUser_Test extends TestNGCitrusSpringSupport {
                         "        \"text\": \"To keep ReqRes free, contributions towards server costs are appreciated!\"\n" +
                         "    }\n" +
                         "}")
+        );
+    }
+
+    @Test(description = "Получение информации о пользователе через POJO")
+    @CitrusTest
+    public void getUser2POJOTest() {
+        this.context = citrus.getCitrusContext().createTestContext();
+
+        $(echo("We have userId = " + context.getVariable("userId")));
+        $(echo("Property \"userId\" = " + "${userId}"));
+        System.out.println(getJsonData().toString());
+        variable("now", "citrus:currentDate()");
+        $(echo("Today is: ${now}"));
+        run(http()
+                .client("restClientReqres")
+                .send()
+                .get("users/" + context.getVariable("userId")));
+
+        run(http()
+                .client("restClientReqres")
+                .receive()
+                .response(HttpStatus.OK)
+                .message()
+                .type(MessageType.JSON)
+                .body(new ObjectMappingPayloadBuilder(getJsonData(), "objectMapper"))
+        );
+    }
+
+    @Test(description = "Получение информации о пользователе через json файл")
+    @CitrusTest
+    public void getUser2JsonFileTest() {
+        this.context = citrus.getCitrusContext().createTestContext();
+
+        $(echo("We have userId = " + context.getVariable("userId")));
+        $(echo("Property \"userId\" = " + "${userId}"));
+        System.out.println(getJsonData().toString());
+        variable("now", "citrus:currentDate()");
+        $(echo("Today is: ${now}"));
+        run(http()
+                .client("restClientReqres")
+                .send()
+                .get("users/" + context.getVariable("userId")));
+
+        run(http()
+                .client("restClientReqres")
+                .receive()
+                .response(HttpStatus.OK)
+                .message()
+                .type(MessageType.JSON)
+                .body(new ClassPathResource("json/user2.json"))
         );
     }
 
