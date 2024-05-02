@@ -38,19 +38,16 @@
       <artifactId>citrus-http</artifactId>
       <version>${citrus.version}</version>
     </dependency>
-
     <dependency>
       <groupId>com.consol.citrus</groupId>
       <artifactId>citrus-testng</artifactId>
       <version>${citrus.version}</version>
     </dependency>
-
     <dependency>
       <groupId>com.consol.citrus</groupId>
       <artifactId>citrus-validation-json</artifactId>
       <version>${citrus.version}</version>
     </dependency>
-
 
     <dependency>
       <groupId>org.slf4j</groupId>

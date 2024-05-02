@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="TestSuite" time="0.0" tests="1" errors="0" skipped="0" failures="1">
+<testsuite name="citrus.tests.GetUser_Test" time="0.0" tests="1" errors="0" skipped="0" failures="1">
     <testcase name="GetUser_Test.getActions" classname="citrus.tests.GetUser_Test" time="0.0">
       <failure type="com.consol.citrus.exceptions.TestCaseFailedException" message="Failed to validate JSON text:
 {&quot;data&quot;:{&quot;id&quot;:2,&quot;email&quot;:&quot;janet.weaver@reqres.in&quot;,&quot;first_name&quot;:&quot;Janet&quot;,&quot;last_name&quot;:&quot;Weaver&quot;,&quot;avatar&quot;:&quot;https://reqres.in/img/faces/2-image.jpg&quot;},&quot;support&quot;:{&quot;url&quot;:&quot;https://reqres.in/#support-heading&quot;,&quot;text&quot;:&quot;To keep ReqRes free, contributions towards server costs are appreciated!&quot;}} Missing JSON entry: + &apos;uridl&apos;">

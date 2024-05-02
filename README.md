@@ -10,7 +10,7 @@
 #### With each test step you can validate the exchanged messages with expected control data including message headers, attachments and body content (e.g. XML, Json, ...). The test provides a Java fluent API to specify the test logic and is fully automated. The repeatable test is nothing but a normal JUnit or TestNG test and can easily run as integration test in a CI/CD pipeline.
 
 ---
-# Starts
+# Create citrus project 
 
 ```shell
  mvn archetype:generate
