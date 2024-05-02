@@ -6,7 +6,7 @@ public class Support {
 
     @Override
     public String toString() {
-        return "Support{" +
+        return "support{" +
                 "url='" + url + '\'' +
                 ", text='" + text + '\'' +
                 '}';

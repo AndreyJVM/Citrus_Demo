@@ -6,7 +6,7 @@ public class Data {
 
     @Override
     public String toString() {
-        return "Data{" +
+        return "data{" +
                 "id=" + id +
                 ", email='" + email + '\'' +
                 ", first_name='" + first_name + '\'' +

@@ -28,7 +28,7 @@ public class GetUser_Test extends TestNGCitrusSpringSupport {
 
         $(echo("We have userId = " + context.getVariable("userId")));
         $(echo("Property \"userId\" = " + "${userId}"));
-
+        System.out.println(getJsonData().toString());
         variable("now", "citrus:currentDate()");
         $(echo("Today is: ${now}"));
         run(http()
@@ -42,7 +42,20 @@ public class GetUser_Test extends TestNGCitrusSpringSupport {
                 .response(HttpStatus.OK)
                 .message()
                 .type(MessageType.JSON)
-                .body(new ObjectMappingPayloadBuilder(getJsonData(), "objectMapper"))
+                /*.body(new ObjectMappingPayloadBuilder(getJsonData(), "objectMapper"))*/
+                .body("{\n" +
+                        "    \"data\": {\n" +
+                        "        \"id\": 2,\n" +
+                        "        \"email\": \"janet.weaver@reqres.in\",\n" +
+                        "        \"first_name\": \"Janet\",\n" +
+                        "        \"last_name\": \"Weaver\",\n" +
+                        "        \"avatar\": \"https://reqres.in/img/faces/2-image.jpg\"\n" +
+                        "    },\n" +
+                        "    \"support\": {\n" +
+                        "        \"url\": \"https://reqres.in/#support-heading\",\n" +
+                        "        \"text\": \"To keep ReqRes free, contributions towards server costs are appreciated!\"\n" +
+                        "    }\n" +
+                        "}")
         );
     }
 
